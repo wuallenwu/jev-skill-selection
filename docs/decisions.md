@@ -33,3 +33,9 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 ## Budget
 - Check the real bill after every paid step, not just estimates: Modal via `modal billing report --for today --json` filtered to our app names (the `dguo3` workspace is shared, so workspace totals include other people's apps); LLM providers via their usage dashboards/APIs plus our own token × price ledger. Phase 0 Modal build sweep: $0.26 (app `jev-build-check`).
 - Hard stops: $450 per LLM provider (spec); SAIL credit is $500.
+
+## Model plan (changes the spec; agreed 2026-11-21)
+- Phase 3 pilot covers **both DeepSeek V4 Flash and Qwen3.6-35B-A3B** (10 tasks × no-skills/oracle × 3 runs each). The key metric is the oracle − no-skills gap (the range selectors can move within), alongside real tokens and cost per run.
+- Full grid first on the model with the best gap per dollar (likely DeepSeek); second model if the budget allows. If Qwen's gap is tiny, swap in Gemma 4 31B. Nothing smaller than Qwen3.6: a model that can't use skills makes Fig 1 flat.
+- **GLM-5.3 runs on a subset only:** ~20–25 tasks where the oracle clearly beats no-skills for the first model; 1 run; no-skills, oracle and the top 2–3 selectors at 1K. Estimated ~$70.
+- Rough SAIL budget: pilots ~$10, DeepSeek grid ~$240, GLM subset ~$70, leaving ~$180 for Qwen/Gemma or reruns. Re-project from pilot token counts before Phase 4.
