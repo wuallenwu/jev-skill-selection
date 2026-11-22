@@ -1,0 +1,12 @@
+[submodule "external/skillsbench"]
+	path = external/skillsbench
+	url = https://github.com/benchflow-ai/skillsbench.git
+	ignore = dirty
+[submodule "external/skill-flow"]
+	path = external/skill-flow
+	url = https://github.com/IBPA/skill-flow.git
+	ignore = dirty
+[submodule "external/harbor"]
+	path = external/harbor
+	url = https://github.com/laude-institute/harbor.git
+	ignore = dirty
