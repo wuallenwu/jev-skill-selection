@@ -39,3 +39,10 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 - Full grid first on the model with the best gap per dollar (likely DeepSeek); second model if the budget allows. If Qwen's gap is tiny, swap in Gemma 4 31B. Nothing smaller than Qwen3.6: a model that can't use skills makes Fig 1 flat.
 - **GLM-5.3 runs on a subset only:** ~20–25 tasks where the oracle clearly beats no-skills for the first model; 1 run; no-skills, oracle and the top 2–3 selectors at 1K. Estimated ~$70.
 - Rough SAIL budget: pilots ~$10, DeepSeek grid ~$240, GLM subset ~$70, leaving ~$180 for Qwen/Gemma or reruns. Re-project from pilot token counts before Phase 4.
+
+## Jev (agreed 2026-11-21)
+- **Precompute and cache all Jev draws up front**: one independent draw per (task, library_size, run 1–3), about 480 calls (~$2–3). Each cache entry stores the full request/response, the reported model version, and a hash of the library. A stale hash fails loudly.
+- The offline recall sweep and the agent runs use the same cached draws. Agent run *r* uses draw *r*.
+- Draws are shared across agent models (paired comparison). One draw never serves more than one run index, so run-to-run variance is kept.
+- Pin the Jev version for the whole cache (currently `jev-1.14.0`).
+- Hard cap: **$20 total Jev spend**, tracked in the same ledger as the providers. Check actual usage against the TypeSafe console after the precompute.
