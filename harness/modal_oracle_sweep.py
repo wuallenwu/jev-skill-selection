@@ -27,7 +27,7 @@ def sweep(job_name: str, tasks: str = "", n_concurrent: int = 32):
     # the container's own credentials, so an empty config passes the check without copying a token.
     (Path.home() / ".modal.toml").touch()
     cmd = ["harbor", "run", "-p", "/tasks", "-a", "oracle", "-e", "modal", "-n", str(n_concurrent),
-           "--jobs-dir", "/jobs", "--job-name", job_name, "--yes", "--quiet"]
+           "--ek", "app_name=jev-harbor", "--jobs-dir", "/jobs", "--job-name", job_name, "--yes", "--quiet"]
     for t in filter(None, tasks.split(",")):
         cmd += ["--include-task-name", t]
     print(" ".join(cmd), flush=True)
