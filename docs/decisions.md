@@ -54,3 +54,5 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 - Converted tasks (`data/harbor_tasks/`, 522 MB) are gitignored. Regenerate them with `harness/convert_tasks.py`.
 - Harbor runs inside a Modal function (detached), so long sweeps survive a laptop disconnect. Inside the container, an empty `~/.modal.toml` satisfies Harbor's auth preflight, and the container's own Modal credentials are used. We never copy a personal token into a workspace secret.
 - Job outputs live in the Modal Volume `jev-jobs`. Fetch them with `modal volume get jev-jobs <job> jobs/` (`jobs/` is gitignored).
+- **(proposed)** Task set = the 84 tasks whose oracle passes on Modal (83 clean, plus setup-fuzzing-py, whose verifier passes). This drops fix-build-agentops, reserves-at-risk-calc and fix-druid-loophole-cve. SkillFlow's exclusion list is replaced by this empirical check. It supersedes the earlier task-set proposal.
+- Set Harbor's Modal app name to `jev-harbor` (`--ek app_name=jev-harbor`) so sandbox costs are attributable in `modal billing report`. Otherwise they bill under `__harbor__`.

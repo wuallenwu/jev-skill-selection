@@ -112,3 +112,20 @@ So the seismic failures are not Modal-specific and would fail on any fresh build
 
 Not tested yet: whether each built image actually runs the oracle and passes its verifier. That is the first check in Phase 1 (oracle agent on Modal).
 
+
+## 11. Oracle validation on Modal (Phase 1, 2026-11-23)
+
+Harbor's oracle agent ran on all 87 converted tasks on Modal (`harness/modal_oracle_sweep.py`, job `oracle-sweep-1`, 15 min). Per-task results are in `docs/oracle_sweep.tsv`.
+
+**83 pass cleanly.** The remaining four:
+
+| Task | Result | Cause |
+|---|---|---|
+| setup-fuzzing-py | verifier reward **1.0**, but `solve.sh` exits 77 | an intermediate Black step hits a file containing null bytes; the final outputs are still correct → usable |
+| fix-build-agentops | reward 0 | the oracle's own `patch_3.diff` doesn't apply ("No valid patches in input", binary `logo.png`) → upstream oracle bug |
+| reserves-at-risk-calc | reward 0 | the oracle downloads live IMF data, the file format has changed, so the solution never writes its output → bit rot (SkillFlow also excluded it) |
+| fix-druid-loophole-cve | error, `solve.sh` exits 128 | `git apply` of the oracle's CVE patch fails → likely upstream drift; not retried |
+
+**SkillFlow's exclusions mostly don't apply on Modal.** Of their 16 exclusions still in `tasks/`, 13 pass the oracle here. That includes all of the "Daytona error" ones except fix-druid-loophole-cve, plus their build and repro exclusions earthquake-phase-association, simpo-code-reproduction, multilingual-video-dubbing, fix-build-google-auto and r2r-mpc-control. Oracle-pass doesn't prove a task is non-flaky (e.g. fix-build-google-auto's Maven, r2r-mpc-control's CPU timing). The 3 runs per condition will show flakiness.
+
+Cost: about $0.81 of Modal sandbox time, billed under Harbor's default app name `__harbor__`; the wrapper function itself cost about $0.01. From now on Harbor's app will be named `jev-harbor`.
