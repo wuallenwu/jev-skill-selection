@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 data/raw/
 jobs/
+data/harbor_tasks/
