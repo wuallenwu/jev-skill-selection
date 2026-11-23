@@ -5,4 +5,4 @@ Benchmark: SkillsBench (via Harbor on Modal). Distractors: SkillFlow's SkillsMP 
 
 - `external/`: pinned submodules (skillsbench, skill-flow, harbor). `git submodule update --init`
 - `docs/recon.md`: Phase 0 findings. `docs/decisions.md`: choices not covered by the spec.
-- Secrets: copy `.env.example` to `.env`.
+- Secrets: `scripts/setup_keys.sh` (prompts, writes `.env` + Modal secret `jev-keys`), then `scripts/check_keys.sh` (free checks: keys valid, model IDs exist).
