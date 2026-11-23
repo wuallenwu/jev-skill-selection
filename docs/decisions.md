@@ -46,3 +46,11 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 - Draws are shared across agent models (paired comparison). One draw never serves more than one run index, so run-to-run variance is kept.
 - Pin the Jev version for the whole cache (currently `jev-1.14.0`).
 - Hard cap: **$20 total Jev spend**, tracked in the same ledger as the providers. Check actual usage against the TypeSafe console after the precompute.
+
+## Harness (Phase 1)
+- Converted tasks get `environment.skills_dir = "/app/skills"`, which is where BenchFlow deploys skills. Some tasks and oracle scripts assume that path (e.g. `civ6-adjacency-optimizer`, `dialogue-parser`, `pptx-reference-formatting`), so injected skills land there for every agent.
+- Oracle validation needs the curated skills (several `solve.sh` scripts call skill scripts), but Harbor's oracle agent rejects `--skill`. So the converter copies the curated skills into `solution/skills/` and prepends one line to `solve.sh` that copies them to `/app/skills`. Harbor uploads `solution/` only for the oracle agent, so this can't leak into agent runs.
+- The converter drops BenchFlow-only verifier fields (`type`, `service`, `hardening`, `pytest_plugins`) and `sandbox.bugswarm_image_tag`. The test scripts install their own pytest plugins.
+- Converted tasks (`data/harbor_tasks/`, 522 MB) are gitignored. Regenerate them with `harness/convert_tasks.py`.
+- Harbor runs inside a Modal function (detached), so long sweeps survive a laptop disconnect. Inside the container, an empty `~/.modal.toml` satisfies Harbor's auth preflight, and the container's own Modal credentials are used. We never copy a personal token into a workspace secret.
+- Job outputs live in the Modal Volume `jev-jobs`. Fetch them with `modal volume get jev-jobs <job> jobs/` (`jobs/` is gitignored).
