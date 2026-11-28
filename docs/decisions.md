@@ -66,7 +66,7 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 - Embedders: sentence-transformers, bf16, max_seq 8192, normalized cosine, on one H100. The doc embeddings are computed once over the 35K library (the 1K library is a column subset) and cached in the `jev-data` Volume. Qwen3-Embedding uses its generic web-search instruction prefix; SKILLRET uses its skill-search prefix, passed explicitly.
 - vLLM was dropped for embeddings (it broke with transformers 5 and crashed in its embedding scheduler). Pinned: sentence-transformers 6.3.0, transformers 5.24.0, torch 2.15.0.
 - Recall@k = |top-k ∩ curated| / |curated|, so @3 can't reach 1 for tasks with more than 3 curated skills. **(proposed)** Also report recall@k / min(k, |curated|) in the analysis.
-- **(to do)** The offline recall currently averages over all 87 tasks. Restrict it to the 84 oracle-valid tasks (cheap: the embeddings are cached).
+- Offline recall on the 84 oracle-valid tasks, with the normalized variant: `results/offline_recall_tasks84.csv` (`analysis/offline_recall.py`). Embedding recall@100 at 35K = 0.871, which is Jev's ceiling there.
 - Cost: $7.33 on Modal (app `jev-offline-sweep`, including the throughput tests), under the $15 cap.
 
 ## Runner (Phase 1, 2026-11-27)
