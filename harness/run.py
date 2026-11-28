@@ -147,8 +147,8 @@ def one_trial(spec: dict, cfg: dict, meta: dict) -> dict:
         job = {"job_name": rid, "jobs_dir": str(JOBS / "trials"), "n_attempts": 1, "n_concurrent_trials": 1,
                # "limit" reserves 0.125 cores/128 MB and bursts to the task's cpus/memory, so Modal bills ~actual usage
                # instead of the full reservation while the agent waits on the LLM.
-               "environment": {"type": "modal", "kwargs": env_kwargs, "cpu_enforcement_policy": cfg["resource_policy"],
-                               "memory_enforcement_policy": cfg["resource_policy"]},
+               "environment": {"type": "modal", "kwargs": env_kwargs, "cpu_enforcement_policy": cfg["resource_policy"].split(":")[0],
+                               "memory_enforcement_policy": cfg["resource_policy"].split(":")[-1]},
                "agents": [agent], "tasks": [{"path": f"/root/data/harbor_tasks/{task}"}]}
         jdir = JOBS / "trials" / rid
         shutil.rmtree(jdir, ignore_errors=True)  # a retried errored run starts clean; its old row stays in results
@@ -252,7 +252,8 @@ def grid(specs: list[dict], cfg: dict, meta: dict, results: str, n_concurrent: i
             with out.open("a") as f:
                 f.write(json.dumps(row) + "\n")
             rows.append(row)
-            s = spent(rows)
+            # caps are global: count every results file on the volume, so concurrent runs (Allen's + Daniel's) share them
+            s = spent([r for f in (JOBS / "results").glob("*.jsonl") if f != out for r in read_rows(f)] + rows)
             over = [p for p, v in s.items() if caps.get(p) and v >= caps[p]]
             if over and not stop.is_set():
                 print(f"SPEND CAP HIT {over}: {s}; stopping new trials", flush=True); stop.set()
