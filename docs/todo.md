@@ -1,29 +1,47 @@
 # To-do before the poster
 
-Owner key: **A** = Allen, **T** = teammate, **C** = Claude session. Anyone can take an unowned item.
+Split: **Allen = Jev**, **Friend = everything non-Jev** (agent runs, analysis, poster figures). **C** = Claude session (helps either).
+Experiment IDs refer to `docs/experiments.md`.
 
-## Setup
-- [ ] **A** Add the TypeSafe key: run `scripts/setup_keys.sh TYPESAFE_API_KEY` in a real terminal, then `scripts/check_keys.sh`. Ask TypeSafe about research credits.
-- [ ] **T** `git clone --recurse-submodules`, `uv sync`, and run `uv run python -m pytest -q tests` (7 tests should pass). Modal access to the `dguo3` workspace is needed to launch runs.
-- [ ] **A/T** Read `docs/decisions.md` and object to anything marked (proposed). Silence = accepted.
+## Shared setup
+- [ ] Clone with `git clone --recurse-submodules`, `uv sync`, then `uv run python -m pytest -q tests` (9 pass). You need access to the Modal workspace `dguo3`. The SAIL key is already in the workspace secret `jev-keys`, so the friend **doesn't need their own key**. Every run spends the shared SAIL credit, so announce big runs first.
+- [ ] Read `docs/decisions.md` and object to anything marked (proposed).
+- [ ] Before and after each big run, check the bills: SAIL dashboard; `uv run modal billing report --for today --json` filtered to `jev-*`. The runner hard-stops at $450 per provider and $20 for Jev.
 
-## Jev (independent of the agent runs; good teammate track)
-- [ ] **T** J0: Jev probe script. One request; check limits, token counts, version. Read https://docs.typesafe.ai/cookbooks/skill_suggestion.md first.
-- [ ] **T** J1: `selection/jev.py`. 1K chunking + final round; 35K over the embedding top-100. 3 independent draws per (task, size); log every request/response; write `data/selections/jev_{1k,35k}.json` as `{"top": {task: [d0, d1, d2]}, ...meta}` (the format `harness/conditions.py` expects), plus per-draw cost and model version.
-- [ ] **T** J2: add Jev to the offline recall table, with the spread across draws.
+## Allen: Jev
+- [ ] Add the TypeSafe key: `scripts/setup_keys.sh TYPESAFE_API_KEY` in a real terminal.
+- [ ] **J0** Probe: one request; confirm the 255-option and 32k-token limits, the `usage` token counts and the version string.
+- [ ] **J1** `selection/jev.py`: 1K chunking plus a final round; at 35K, rank the embedding top-100 (`data/selections/embedding_35k.json`). 3 independent draws per (task, size). Log every request and response. Write `data/selections/jev_{1k,35k}.json` as `{"top": {task: [d0, d1, d2]}, ...}` with per-draw cost and version.
+- [ ] **J2** Jev offline recall (+ spread across draws), merged into `results/offline_recall_tasks84.csv`.
+- [ ] **J3** Agent runs: `--conditions jev --library 1k,35k` once J1 exists (pilot on `--tasks pilot --runs 1` first).
 
-## Agent runs (see `docs/experiments.md`)
-- [ ] **C** N1 pilot (DeepSeek + Qwen, none/oracle, 10 tasks × 3) → pass rates, oracle gap, cost/run, projected full-grid cost. **Stop for approval.**
-- [ ] **C** N2/N3/N4/J3 pilots.
-- [ ] **A** Approve the full grid and the model plan after the pilot report.
-- [ ] **C** Full runs in the order in `docs/experiments.md`; check SAIL + Modal bills after each.
+## Friend: non-Jev experiments (after Allen approves the full grid)
+Launch: `uv run modal run --detach harness/run.py --model deepseek-v4-flash --conditions <...> --library <...> --tasks all --results <name>`.
+Fetch the results and check them with `uv run python harness/sanity.py`; `analysis/pilot_report.py` gives pass rate, cost and time per cell.
+- [ ] **Resume the pilots**: rerun the 3 pilot commands from `docs/experiments.md` with the same `--results` names. Only the errored runs get retried (~$1).
+- [ ] **N1 full**: `--conditions none,oracle` (504 runs, ~$21).
+- [ ] **N3 full**: `--conditions bm25,embedding,skillret --library 1k,35k` (1,512 runs, ~$64).
+- [ ] **N2 full**: `--conditions degraded-25,degraded-50,degraded-75 --library 1k,35k` (1,512 runs, ~$64).
+- [ ] **N4 full**: `--conditions full-list --library 1k` (252 runs, ~$45).
+- [ ] **N6 large/small subset**: pick ~20–25 tasks where DeepSeek's oracle beats none; run GLM-5.3 (and Gemma 4 if approved) on `none,oracle` plus the top 2–3 selectors at 1K, 1 run each.
+- [ ] **Error analysis**: failure modes by condition, using `skills_opened` / `skills_used` against `passed`, and timeouts per task. Pilot leads:
+  - python-scala-translation times out under every condition.
+  - organize-messy-files fails *with* skills: the agent nests the sorted folders inside the source dir.
+- [ ] Audit ~30 random near-duplicate drops (the 0.8 cutoff in `selection/offline_sweep.py`).
 
-## Loose ends
-- [ ] **T** Audit ~30 random near-duplicate drops (the 0.8 similarity cutoff in `selection/offline_sweep.py`); report false positives/negatives.
-- [x] **C** Restrict offline recall to the 84 tasks; add recall@k/min(k, |curated|) → `results/offline_recall_tasks84.csv`.
-- [x] **C** BM25 check: full text R@10 0.64 vs name+desc 0.42 at 35K → indexing the skill body explains most of the gap to SkillRouter (see decisions).
-- [ ] **A** Get the SkillFlow paper PDF from OpenReview (blocked for bots) for the comparison table.
+## Friend: analysis + poster
+- [ ] `analysis/make_all.py`: regenerates everything from `results/raw/*.jsonl` (use `harness.sanity.latest_ok` to dedupe retries).
+  - Fig 1: pass rate vs. selection accuracy. Curve: none → degraded-25/50/75 → oracle. Selectors are points (recall_selected; full-list uses recall_opened).
+  - Fig 2: total cost (agent + selector) vs. pass rate.
+  - Fig 3: recall by domain, selectors × domains, with Jev highlighted (needs J2).
+  - Table: pass rate and recall per condition, with 95% bootstrap CIs over tasks; paired per-task tests vs. no-skills.
+- [ ] Poster draft. Findings so far:
+  - SKILLRET ≈ the base embedder on task-instruction queries.
+  - Jev's ceiling at 35K = 0.87 recall@100.
+  - The full-list agent opens exactly the curated skills (pilot).
+  - Oracle − none gap = +0.15 on the pilot.
+  - Limitations: one agent harness, 84 tasks, oracle-pass ≠ non-flaky.
 
-## Analysis + poster
-- [ ] **T/C** `analysis/make_all.py`: regenerates everything from `results/raw/*.jsonl`. Figs 1–3 + table with 95% bootstrap CIs over tasks + paired per-task tests vs no-skills.
-- [ ] **T** Poster draft: question, setup diagram (library → selector → top-3 → agent on Modal), Figs 1–3, key findings (SKILLRET ≈ base embedder on task-instruction queries; Jev's 35K ceiling = 0.86 recall@100; full-list cost), limitations (one agent harness, 84 tasks, oracle-pass ≠ non-flaky).
+## Done
+- [x] Recon, converter, oracle validation (84 tasks), libraries, offline recall (84 tasks, normalized), BM25 check, harness + tests, DeepSeek pilots N1–N4.
+- [x] Small model: Qwen3.6 can't be used on SAIL (Flex-only). **Allen to decide**: Gemma 4 subset / Qwen on Fireworks / none.
