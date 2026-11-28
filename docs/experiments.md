@@ -43,3 +43,4 @@ Models: `deepseek-v4-flash` (main), `qwen3.6-35b-a3b` (small; swap in `gemma-4-3
 6. Analysis (Figs 1–3, table, paired tests) from the results tables
 
 Budget guard: the runner stops new trials at $450/provider and $20 Jev (`harness/config.yaml`). SAIL credit is $500.
+**Modal sandboxes are the bigger cost**: ~$0.11–0.13 per trial (sandbox rates are 3× function rates). The full DeepSeek grid is ~$460–550 on Modal on top of ~$215 on SAIL. The runner does not cap Modal spend, so check `modal billing report` during big runs.
