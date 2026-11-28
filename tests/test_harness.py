@@ -94,3 +94,10 @@ def test_status_of():
     assert run.status_of({"exception_type": "AgentTimeoutError"}, 0.0) == "ok"     # agent ran out of time: a real failure
     assert run.status_of({"exception_type": "BadRequestError"}, 0.0) == "error"    # provider rejected the request: retry
     assert run.status_of(None, None) == "error"
+
+
+def test_is_ok_reclassifies_old_rows():
+    assert run.is_ok({"status": "ok", "error": None})
+    assert run.is_ok({"status": "ok", "error": "AgentTimeoutError: Agent execution timed out"})
+    assert not run.is_ok({"status": "ok", "error": "RuntimeError: x__env: failed to send keys"})  # pre-fix row
+    assert not run.is_ok({"status": "error", "error": "CancelledError: "})

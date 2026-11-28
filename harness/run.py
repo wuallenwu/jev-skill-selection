@@ -189,6 +189,12 @@ def one_trial(spec: dict, cfg: dict, meta: dict) -> dict:
 OUTCOME_EXCEPTIONS = {"AgentTimeoutError", "ContextWindowExceededError", "AgentSafetyRefusalError", "NonZeroAgentExitCodeError"}
 
 
+def is_ok(row: dict) -> bool:
+    """A finished task outcome. Re-checks the error type so rows logged before status_of existed are judged the same way."""
+    err = row.get("error") or ""
+    return row.get("status") == "ok" and (not err or err.split(":")[0] in OUTCOME_EXCEPTIONS)
+
+
 def status_of(exc: dict | None, reward) -> str:
     """ok = a real task outcome (pass or fail); error = infra/provider failure, retried on resume."""
     if exc:
@@ -229,7 +235,7 @@ def grid(specs: list[dict], cfg: dict, meta: dict, results: str, n_concurrent: i
     out = JOBS / "results" / f"{results}.jsonl"
     out.parent.mkdir(parents=True, exist_ok=True)
     rows = read_rows(out)
-    done = {r["run_id"] for r in rows if r.get("status") == "ok"}
+    done = {r["run_id"] for r in rows if is_ok(r)}
     todo = [s for s in specs if s["run_id"] not in done]
     print(f"{len(specs)} runs requested, {len(specs) - len(todo)} already done, {len(todo)} to run", flush=True)
     lock, stop = threading.Lock(), threading.Event()

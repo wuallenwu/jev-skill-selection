@@ -8,13 +8,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from harness import conditions as C
+from harness.run import is_ok
 
 
 def latest_ok(rows):
     """One row per run_id: the last non-error row (rows are append-only, retries add rows)."""
     by = {}
     for r in rows:
-        if r.get("status") == "ok":
+        if is_ok(r):
             by[r["run_id"]] = r
     return list(by.values())
 
