@@ -132,7 +132,8 @@ def one_trial(spec: dict, cfg: dict, meta: dict) -> dict:
             row.update(spec.get("jev_meta") or {})
         sdir = Path(f"/tmp/skills/{rid}")
         shutil.rmtree(sdir, ignore_errors=True)
-        env_kwargs = {"app_name": "jev-harbor"}
+        # Bound sandbox life so a dead orchestrator can't leave sandboxes billing for Harbor's 24 h default.
+        env_kwargs = {"app_name": "jev-harbor", "sandbox_idle_timeout_secs": 1800, "sandbox_timeout_secs": 4 * 3600}
         agent = {"name": cfg["agent"], "model_name": f"openai/{model['id']}", "base_url": prov["base_url"], "model_api_key_name": prov["key_env"]}
         if cond == "full-list":
             # Harbor's per-trial upload can't take 1K skills (one exec with every path > ARG_MAX), so mount the
@@ -216,7 +217,7 @@ def spent(rows: list[dict]) -> dict:
 
 
 @app.function(volumes={"/jobs": jobs_vol, "/vol": data_vol, "/lib1k": lib1k_vol}, secrets=[modal.Secret.from_name("jev-keys")],
-              timeout=24 * 3600, cpu=8, memory=16384)
+              timeout=24 * 3600, cpu=8, memory=16384, nonpreemptible=True)  # preemption cancels every in-flight trial
 def grid(specs: list[dict], cfg: dict, meta: dict, results: str, n_concurrent: int):
     sys.path.insert(0, "/root")
     (Path.home() / ".modal.toml").touch()  # Harbor's auth preflight; the container's own Modal credentials are used
