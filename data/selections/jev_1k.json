@@ -1,0 +1,1069 @@
+{
+ "selector": "jev",
+ "library_size": "1k",
+ "model": "jev-1.14.0",
+ "top": {
+  "citation-check": [
+   [
+    "sb/citation-check/citation-management",
+    "skillsmp/perplexity-researcher-pro",
+    "skillsmp/web-research-2",
+    "skillsmp/matrix-deep-research",
+    "skillsmp/agent-browser-10",
+    "skillsmp/searxng-search",
+    "skillsmp/paper-check",
+    "sb/edit-pdf/text-parser",
+    "skillsmp/local-webfetch",
+    "skillsmp/use-research"
+   ],
+   [
+    "sb/citation-check/citation-management",
+    "skillsmp/perplexity-researcher-pro",
+    "skillsmp/searxng-search",
+    "skillsmp/web-research-2",
+    "skillsmp/paper-check",
+    "skillsmp/agent-browser-33",
+    "sb/edit-pdf/text-parser",
+    "skillsmp/matrix-deep-research",
+    "skillsmp/use-research",
+    "skillsmp/analyzing-research-papers"
+   ],
+   [
+    "sb/citation-check/citation-management",
+    "skillsmp/perplexity-researcher-pro",
+    "skillsmp/web-research-2",
+    "skillsmp/searxng-search",
+    "skillsmp/paper-check",
+    "skillsmp/matrix-deep-research",
+    "skillsmp/analyzing-research-papers",
+    "skillsmp/cite-sources",
+    "skillsmp/codebase-access",
+    "sb/enterprise-information-search/enterprise-artifact-search"
+   ]
+  ],
+  "gravitational-wave-detection": [
+   [
+    "sb/gravitational-wave-detection/matched-filtering",
+    "sb/gravitational-wave-detection/conditioning",
+    "sb/mars-clouds-clustering/parallel-processing",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/earthquake-phase-association/obspy-data-api",
+    "skillsmp/analytics-flow",
+    "skillsmp/code",
+    "skillsmp/codeagent-1",
+    "sb/adaptive-cruise-control/csv-processing",
+    "sb/jax-computing-basics/jax-skills"
+   ],
+   [
+    "sb/gravitational-wave-detection/matched-filtering",
+    "sb/gravitational-wave-detection/conditioning",
+    "sb/mars-clouds-clustering/parallel-processing",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "skillsmp/code",
+    "skillsmp/preprocessing-data-with-automated-pipelines-1",
+    "skillsmp/context7-7",
+    "sb/radar-vital-signs/radar-signal-processing",
+    "sb/adaptive-cruise-control/csv-processing",
+    "sb/earthquake-phase-association/obspy-data-api"
+   ],
+   [
+    "sb/gravitational-wave-detection/matched-filtering",
+    "sb/gravitational-wave-detection/conditioning",
+    "sb/mars-clouds-clustering/parallel-processing",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/earthquake-phase-association/obspy-data-api",
+    "sb/adaptive-cruise-control/csv-processing",
+    "sb/exoplanet-detection-period/light-curve-preprocessing",
+    "sb/parallel-tfidf-search/python-parallelization",
+    "skillsmp/uv-inline-script",
+    "sb/earthquake-phase-association/seisbench-model-api"
+   ]
+  ],
+  "jpg-ocr-stat": [
+   [
+    "sb/jpg-ocr-stat/image-ocr",
+    "skillsmp/xlsx-3",
+    "skillsmp/senior-computer-vision",
+    "skillsmp/preprocessing-data-with-automated-pipelines-1",
+    "skillsmp/xlsx-21",
+    "skillsmp/impl",
+    "sb/sales-pivot-analysis/xlsx",
+    "sb/exceltable-in-ppt/xlsx",
+    "sb/edit-pdf/text-parser",
+    "skillsmp/context7-7"
+   ],
+   [
+    "sb/jpg-ocr-stat/image-ocr",
+    "sb/sales-pivot-analysis/xlsx",
+    "skillsmp/xlsx-3",
+    "skillsmp/senior-computer-vision",
+    "skillsmp/xlsx-21",
+    "sb/jpg-ocr-stat/openai-vision",
+    "sb/exceltable-in-ppt/xlsx",
+    "skillsmp/impl",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/organize-messy-files/planning-with-files"
+   ],
+   [
+    "sb/jpg-ocr-stat/image-ocr",
+    "skillsmp/xlsx-3",
+    "skillsmp/preprocessing-data-with-automated-pipelines-1",
+    "sb/edit-pdf/text-parser",
+    "skillsmp/code",
+    "skillsmp/senior-computer-vision",
+    "skillsmp/impl",
+    "skillsmp/using-generated-regex",
+    "sb/organize-messy-files/planning-with-files",
+    "sb/dynamic-object-aware-egomotion/output-validation"
+   ]
+  ],
+  "manufacturing-equipment-maintenance": [
+   [
+    "sb/manufacturing-equipment-maintenance/reflow-profile-compliance-toolkit",
+    "sb/manufacturing-equipment-maintenance/reflow-machine-maintenance-guidance",
+    "sb/court-form-filling/pdf",
+    "skillsmp/pdf-to-markdown",
+    "skillsmp/pdf-28",
+    "skillsmp/xlsx-3",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/latex-formula-extraction/marker",
+    "sb/edit-pdf/pdf-editing",
+    "skillsmp/analytics-flow"
+   ],
+   [
+    "sb/manufacturing-equipment-maintenance/reflow-profile-compliance-toolkit",
+    "sb/manufacturing-equipment-maintenance/reflow-machine-maintenance-guidance",
+    "sb/sales-pivot-analysis/pdf",
+    "sb/adaptive-cruise-control/csv-processing",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "skillsmp/pdf-to-markdown",
+    "skillsmp/pdf-28",
+    "sb/court-form-filling/pdf",
+    "sb/exceltable-in-ppt/xlsx",
+    "sb/latex-formula-extraction/marker"
+   ],
+   [
+    "sb/manufacturing-equipment-maintenance/reflow-profile-compliance-toolkit",
+    "sb/manufacturing-equipment-maintenance/reflow-machine-maintenance-guidance",
+    "sb/sales-pivot-analysis/pdf",
+    "sb/adaptive-cruise-control/csv-processing",
+    "skillsmp/pdf-26",
+    "skillsmp/pdf-28",
+    "skillsmp/analytics-flow",
+    "sb/enterprise-information-search/enterprise-artifact-search",
+    "sb/organize-messy-files/planning-with-files",
+    "sb/court-form-filling/pdf"
+   ]
+  ],
+  "multilingual-video-dubbing": [
+   [
+    "sb/multilingual-video-dubbing/text-to-speech",
+    "sb/multilingual-video-dubbing/ffmpeg-audio-processing",
+    "sb/multilingual-video-dubbing/ffmpeg-video-editing",
+    "sb/video-silence-remover/audio-extractor",
+    "skillsmp/code",
+    "skillsmp/hf-model-inference",
+    "skillsmp/senior-computer-vision",
+    "skillsmp/exploring-cli-tools",
+    "sb/video-silence-remover/energy-calculator",
+    "skillsmp/media-expert"
+   ],
+   [
+    "sb/multilingual-video-dubbing/text-to-speech",
+    "sb/multilingual-video-dubbing/ffmpeg-audio-processing",
+    "sb/video-silence-remover/report-generator",
+    "sb/multilingual-video-dubbing/ffmpeg-video-editing",
+    "skillsmp/media-expert",
+    "sb/video-silence-remover/video-processor",
+    "sb/multilingual-video-dubbing/ffmpeg-format-conversion",
+    "sb/multilingual-video-dubbing/ffmpeg-media-info",
+    "skillsmp/code",
+    "sb/organize-messy-files/planning-with-files"
+   ],
+   [
+    "sb/multilingual-video-dubbing/text-to-speech",
+    "sb/multilingual-video-dubbing/ffmpeg-audio-processing",
+    "sb/video-silence-remover/report-generator",
+    "sb/multilingual-video-dubbing/ffmpeg-video-editing",
+    "skillsmp/media-expert",
+    "skillsmp/impl",
+    "sb/multilingual-video-dubbing/ffmpeg-format-conversion",
+    "sb/multilingual-video-dubbing/ffmpeg-media-info",
+    "sb/video-silence-remover/video-processor",
+    "sb/multilingual-video-dubbing/ffmpeg-video-filters"
+   ]
+  ],
+  "organize-messy-files": [
+   [
+    "sb/organize-messy-files/file-organizer",
+    "skillsmp/pdf-to-markdown",
+    "sb/sales-pivot-analysis/pdf",
+    "skillsmp/analyzing-research-papers",
+    "sb/latex-formula-extraction/marker",
+    "sb/court-form-filling/pdf",
+    "skillsmp/embedding",
+    "skillsmp/semantic-search-2",
+    "sb/organize-messy-files/planning-with-files",
+    "skillsmp/dont-be-greedy"
+   ],
+   [
+    "sb/organize-messy-files/file-organizer",
+    "sb/latex-formula-extraction/marker",
+    "skillsmp/embedding",
+    "skillsmp/pdf-to-markdown",
+    "skillsmp/analyzing-research-papers",
+    "sb/sales-pivot-analysis/pdf",
+    "sb/court-form-filling/pdf",
+    "skillsmp/pdf-28",
+    "sb/organize-messy-files/planning-with-files",
+    "skillsmp/building-classification-models-2"
+   ],
+   [
+    "sb/organize-messy-files/file-organizer",
+    "sb/latex-formula-extraction/marker",
+    "skillsmp/analyzing-research-papers",
+    "sb/sales-pivot-analysis/pdf",
+    "skillsmp/pdf-to-markdown",
+    "sb/court-form-filling/pdf",
+    "sb/organize-messy-files/planning-with-files",
+    "skillsmp/dont-be-greedy",
+    "skillsmp/pdf-28",
+    "skillsmp/semantic-search-2"
+   ]
+  ],
+  "parallel-tfidf-search": [
+   [
+    "sb/parallel-tfidf-search/python-parallelization",
+    "skillsmp/python-performance-1",
+    "sb/mars-clouds-clustering/parallel-processing",
+    "skillsmp/code",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "skillsmp/meta-cognition-parallel",
+    "sb/setup-fuzzing-py/discover-important-function",
+    "skillsmp/debug-1",
+    "skillsmp/ln-628-concurrency-auditor",
+    "skillsmp/performance-testing-3"
+   ],
+   [
+    "sb/parallel-tfidf-search/python-parallelization",
+    "sb/mars-clouds-clustering/parallel-processing",
+    "skillsmp/python-performance-1",
+    "skillsmp/performance-optimization-14",
+    "sb/flink-query/senior-data-engineer",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/fix-build-agentops/testing-python",
+    "skillsmp/multiplicity-orchestration",
+    "skillsmp/performance-scalability-engineer",
+    "skillsmp/impl"
+   ],
+   [
+    "sb/parallel-tfidf-search/python-parallelization",
+    "sb/mars-clouds-clustering/parallel-processing",
+    "skillsmp/python-performance-1",
+    "skillsmp/impl",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/parallel-tfidf-search/memory-optimization",
+    "skillsmp/multiplicity-orchestration",
+    "skillsmp/optimization-resources",
+    "skillsmp/ln-628-concurrency-auditor",
+    "skillsmp/code"
+   ]
+  ],
+  "python-scala-translation": [
+   [
+    "sb/python-scala-translation/python-scala-idioms",
+    "sb/python-scala-translation/python-scala-oop",
+    "sb/python-scala-translation/python-scala-functional",
+    "skillsmp/code-migration",
+    "sb/python-scala-translation/python-scala-syntax-mapping",
+    "sb/python-scala-translation/python-scala-libraries",
+    "sb/python-scala-translation/python-scala-collections",
+    "skillsmp/code-reviewer-12",
+    "skillsmp/umbraco-auth-provider",
+    "skillsmp/prd-v06-environment-setup"
+   ],
+   [
+    "sb/python-scala-translation/python-scala-idioms",
+    "sb/python-scala-translation/python-scala-oop",
+    "skillsmp/migrate",
+    "skillsmp/code-migration",
+    "sb/python-scala-translation/python-scala-libraries",
+    "sb/python-scala-translation/python-scala-functional",
+    "sb/python-scala-translation/python-scala-syntax-mapping",
+    "sb/python-scala-translation/python-scala-collections",
+    "skillsmp/impl",
+    "skillsmp/core-development"
+   ],
+   [
+    "sb/python-scala-translation/python-scala-idioms",
+    "sb/python-scala-translation/python-scala-oop",
+    "skillsmp/migrate",
+    "skillsmp/codebase-access",
+    "sb/python-scala-translation/python-scala-functional",
+    "skillsmp/code-migration",
+    "sb/python-scala-translation/python-scala-collections",
+    "sb/python-scala-translation/python-scala-syntax-mapping",
+    "sb/flink-query/senior-data-engineer",
+    "sb/python-scala-translation/python-scala-libraries"
+   ]
+  ],
+  "quantum-numerical-simulation": [
+   [
+    "sb/quantum-numerical-simulation/qutip",
+    "skillsmp/use-research",
+    "skillsmp/pennylane-2",
+    "skillsmp/analyzing-research-papers",
+    "skillsmp/code",
+    "sb/jax-computing-basics/jax-skills",
+    "sb/adaptive-cruise-control/csv-processing",
+    "skillsmp/uv-inline-script",
+    "skillsmp/codex-collaborator",
+    "skillsmp/impl"
+   ],
+   [
+    "sb/quantum-numerical-simulation/qutip",
+    "skillsmp/use-research",
+    "sb/crystallographic-wyckoff-position-analysis/sympy",
+    "sb/jax-computing-basics/jax-skills",
+    "skillsmp/analyzing-research-papers",
+    "skillsmp/pennylane-2",
+    "skillsmp/context7-7",
+    "skillsmp/perplexity-researcher-pro",
+    "sb/adaptive-cruise-control/csv-processing",
+    "skillsmp/uv-inline-script"
+   ],
+   [
+    "sb/quantum-numerical-simulation/qutip",
+    "skillsmp/pennylane-2",
+    "skillsmp/code",
+    "sb/jax-computing-basics/jax-skills",
+    "skillsmp/impl",
+    "skillsmp/analyzing-research-papers",
+    "sb/powerlifting-coef-calc/senior-data-scientist",
+    "sb/adaptive-cruise-control/csv-processing",
+    "skillsmp/github-prior-art-research",
+    "sb/crystallographic-wyckoff-position-analysis/sympy"
+   ]
+  ],
+  "react-performance-debugging": [
+   [
+    "sb/fix-visual-stability/react-best-practices",
+    "skillsmp/providing-performance-optimization-advice",
+    "skillsmp/performance-scalability-engineer",
+    "skillsmp/codebase-access",
+    "skillsmp/frontend-development-1",
+    "skillsmp/performance-benchmarker",
+    "skillsmp/frontend-developer-3",
+    "skillsmp/performance-optimization-14",
+    "skillsmp/debug-1",
+    "skillsmp/nextjs-16-async-apis"
+   ],
+   [
+    "sb/fix-visual-stability/react-best-practices",
+    "skillsmp/providing-performance-optimization-advice",
+    "skillsmp/frontend-development-1",
+    "skillsmp/performance-scalability-engineer",
+    "skillsmp/frontend-developer-3",
+    "sb/fix-visual-stability/browser-testing",
+    "skillsmp/debug-1",
+    "skillsmp/performance-optimization-14",
+    "skillsmp/performance-benchmarker",
+    "skillsmp/nextjs-code-reviewer"
+   ],
+   [
+    "skillsmp/providing-performance-optimization-advice",
+    "skillsmp/frontend-developer-3",
+    "skillsmp/performance-scalability-engineer",
+    "sb/fix-visual-stability/react-best-practices",
+    "skillsmp/debug-1",
+    "skillsmp/frontend-development-1",
+    "skillsmp/codebase-access",
+    "skillsmp/performance-benchmarker",
+    "skillsmp/performance-optimization-14",
+    "skillsmp/nextjs-code-reviewer"
+   ]
+  ]
+ },
+ "draws": {
+  "citation-check": [
+   {
+    "ranked": [
+     "sb/citation-check/citation-management",
+     "skillsmp/perplexity-researcher-pro",
+     "skillsmp/web-research-2",
+     "skillsmp/matrix-deep-research",
+     "skillsmp/agent-browser-10",
+     "skillsmp/searxng-search",
+     "skillsmp/paper-check",
+     "sb/edit-pdf/text-parser",
+     "skillsmp/local-webfetch",
+     "skillsmp/use-research"
+    ],
+    "tokens": 62447,
+    "cost": 0.002623,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|citation-check|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/citation-check/citation-management",
+     "skillsmp/perplexity-researcher-pro",
+     "skillsmp/searxng-search",
+     "skillsmp/web-research-2",
+     "skillsmp/paper-check",
+     "skillsmp/agent-browser-33",
+     "sb/edit-pdf/text-parser",
+     "skillsmp/matrix-deep-research",
+     "skillsmp/use-research",
+     "skillsmp/analyzing-research-papers"
+    ],
+    "tokens": 62696,
+    "cost": 0.002633,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|citation-check|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 4
+   },
+   {
+    "ranked": [
+     "sb/citation-check/citation-management",
+     "skillsmp/perplexity-researcher-pro",
+     "skillsmp/web-research-2",
+     "skillsmp/searxng-search",
+     "skillsmp/paper-check",
+     "skillsmp/matrix-deep-research",
+     "skillsmp/analyzing-research-papers",
+     "skillsmp/cite-sources",
+     "skillsmp/codebase-access",
+     "sb/enterprise-information-search/enterprise-artifact-search"
+    ],
+    "tokens": 62662,
+    "cost": 0.002632,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|citation-check|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 4
+   }
+  ],
+  "gravitational-wave-detection": [
+   {
+    "ranked": [
+     "sb/gravitational-wave-detection/matched-filtering",
+     "sb/gravitational-wave-detection/conditioning",
+     "sb/mars-clouds-clustering/parallel-processing",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/earthquake-phase-association/obspy-data-api",
+     "skillsmp/analytics-flow",
+     "skillsmp/code",
+     "skillsmp/codeagent-1",
+     "sb/adaptive-cruise-control/csv-processing",
+     "sb/jax-computing-basics/jax-skills"
+    ],
+    "tokens": 63560,
+    "cost": 0.00267,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|gravitational-wave-detection|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/gravitational-wave-detection/matched-filtering",
+     "sb/gravitational-wave-detection/conditioning",
+     "sb/mars-clouds-clustering/parallel-processing",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "skillsmp/code",
+     "skillsmp/preprocessing-data-with-automated-pipelines-1",
+     "skillsmp/context7-7",
+     "sb/radar-vital-signs/radar-signal-processing",
+     "sb/adaptive-cruise-control/csv-processing",
+     "sb/earthquake-phase-association/obspy-data-api"
+    ],
+    "tokens": 62904,
+    "cost": 0.002642,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|gravitational-wave-detection|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/gravitational-wave-detection/matched-filtering",
+     "sb/gravitational-wave-detection/conditioning",
+     "sb/mars-clouds-clustering/parallel-processing",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/earthquake-phase-association/obspy-data-api",
+     "sb/adaptive-cruise-control/csv-processing",
+     "sb/exoplanet-detection-period/light-curve-preprocessing",
+     "sb/parallel-tfidf-search/python-parallelization",
+     "skillsmp/uv-inline-script",
+     "sb/earthquake-phase-association/seisbench-model-api"
+    ],
+    "tokens": 63343,
+    "cost": 0.00266,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|gravitational-wave-detection|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   }
+  ],
+  "jpg-ocr-stat": [
+   {
+    "ranked": [
+     "sb/jpg-ocr-stat/image-ocr",
+     "skillsmp/xlsx-3",
+     "skillsmp/senior-computer-vision",
+     "skillsmp/preprocessing-data-with-automated-pipelines-1",
+     "skillsmp/xlsx-21",
+     "skillsmp/impl",
+     "sb/sales-pivot-analysis/xlsx",
+     "sb/exceltable-in-ppt/xlsx",
+     "sb/edit-pdf/text-parser",
+     "skillsmp/context7-7"
+    ],
+    "tokens": 65033,
+    "cost": 0.002731,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|jpg-ocr-stat|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 2
+   },
+   {
+    "ranked": [
+     "sb/jpg-ocr-stat/image-ocr",
+     "sb/sales-pivot-analysis/xlsx",
+     "skillsmp/xlsx-3",
+     "skillsmp/senior-computer-vision",
+     "skillsmp/xlsx-21",
+     "sb/jpg-ocr-stat/openai-vision",
+     "sb/exceltable-in-ppt/xlsx",
+     "skillsmp/impl",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/organize-messy-files/planning-with-files"
+    ],
+    "tokens": 64900,
+    "cost": 0.002726,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|jpg-ocr-stat|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/jpg-ocr-stat/image-ocr",
+     "skillsmp/xlsx-3",
+     "skillsmp/preprocessing-data-with-automated-pipelines-1",
+     "sb/edit-pdf/text-parser",
+     "skillsmp/code",
+     "skillsmp/senior-computer-vision",
+     "skillsmp/impl",
+     "skillsmp/using-generated-regex",
+     "sb/organize-messy-files/planning-with-files",
+     "sb/dynamic-object-aware-egomotion/output-validation"
+    ],
+    "tokens": 64518,
+    "cost": 0.00271,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|jpg-ocr-stat|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 2
+   }
+  ],
+  "manufacturing-equipment-maintenance": [
+   {
+    "ranked": [
+     "sb/manufacturing-equipment-maintenance/reflow-profile-compliance-toolkit",
+     "sb/manufacturing-equipment-maintenance/reflow-machine-maintenance-guidance",
+     "sb/court-form-filling/pdf",
+     "skillsmp/pdf-to-markdown",
+     "skillsmp/pdf-28",
+     "skillsmp/xlsx-3",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/latex-formula-extraction/marker",
+     "sb/edit-pdf/pdf-editing",
+     "skillsmp/analytics-flow"
+    ],
+    "tokens": 65810,
+    "cost": 0.002764,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|manufacturing-equipment-maintenance|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 2
+   },
+   {
+    "ranked": [
+     "sb/manufacturing-equipment-maintenance/reflow-profile-compliance-toolkit",
+     "sb/manufacturing-equipment-maintenance/reflow-machine-maintenance-guidance",
+     "sb/sales-pivot-analysis/pdf",
+     "sb/adaptive-cruise-control/csv-processing",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "skillsmp/pdf-to-markdown",
+     "skillsmp/pdf-28",
+     "sb/court-form-filling/pdf",
+     "sb/exceltable-in-ppt/xlsx",
+     "sb/latex-formula-extraction/marker"
+    ],
+    "tokens": 65690,
+    "cost": 0.002759,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|manufacturing-equipment-maintenance|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/manufacturing-equipment-maintenance/reflow-profile-compliance-toolkit",
+     "sb/manufacturing-equipment-maintenance/reflow-machine-maintenance-guidance",
+     "sb/sales-pivot-analysis/pdf",
+     "sb/adaptive-cruise-control/csv-processing",
+     "skillsmp/pdf-26",
+     "skillsmp/pdf-28",
+     "skillsmp/analytics-flow",
+     "sb/enterprise-information-search/enterprise-artifact-search",
+     "sb/organize-messy-files/planning-with-files",
+     "sb/court-form-filling/pdf"
+    ],
+    "tokens": 65971,
+    "cost": 0.002771,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|manufacturing-equipment-maintenance|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   }
+  ],
+  "multilingual-video-dubbing": [
+   {
+    "ranked": [
+     "sb/multilingual-video-dubbing/text-to-speech",
+     "sb/multilingual-video-dubbing/ffmpeg-audio-processing",
+     "sb/multilingual-video-dubbing/ffmpeg-video-editing",
+     "sb/video-silence-remover/audio-extractor",
+     "skillsmp/code",
+     "skillsmp/hf-model-inference",
+     "skillsmp/senior-computer-vision",
+     "skillsmp/exploring-cli-tools",
+     "sb/video-silence-remover/energy-calculator",
+     "skillsmp/media-expert"
+    ],
+    "tokens": 64104,
+    "cost": 0.002692,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|multilingual-video-dubbing|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/multilingual-video-dubbing/text-to-speech",
+     "sb/multilingual-video-dubbing/ffmpeg-audio-processing",
+     "sb/video-silence-remover/report-generator",
+     "sb/multilingual-video-dubbing/ffmpeg-video-editing",
+     "skillsmp/media-expert",
+     "sb/video-silence-remover/video-processor",
+     "sb/multilingual-video-dubbing/ffmpeg-format-conversion",
+     "sb/multilingual-video-dubbing/ffmpeg-media-info",
+     "skillsmp/code",
+     "sb/organize-messy-files/planning-with-files"
+    ],
+    "tokens": 63983,
+    "cost": 0.002687,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|multilingual-video-dubbing|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 5
+   },
+   {
+    "ranked": [
+     "sb/multilingual-video-dubbing/text-to-speech",
+     "sb/multilingual-video-dubbing/ffmpeg-audio-processing",
+     "sb/video-silence-remover/report-generator",
+     "sb/multilingual-video-dubbing/ffmpeg-video-editing",
+     "skillsmp/media-expert",
+     "skillsmp/impl",
+     "sb/multilingual-video-dubbing/ffmpeg-format-conversion",
+     "sb/multilingual-video-dubbing/ffmpeg-media-info",
+     "sb/video-silence-remover/video-processor",
+     "sb/multilingual-video-dubbing/ffmpeg-video-filters"
+    ],
+    "tokens": 64488,
+    "cost": 0.002708,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|multilingual-video-dubbing|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 6
+   }
+  ],
+  "organize-messy-files": [
+   {
+    "ranked": [
+     "sb/organize-messy-files/file-organizer",
+     "skillsmp/pdf-to-markdown",
+     "sb/sales-pivot-analysis/pdf",
+     "skillsmp/analyzing-research-papers",
+     "sb/latex-formula-extraction/marker",
+     "sb/court-form-filling/pdf",
+     "skillsmp/embedding",
+     "skillsmp/semantic-search-2",
+     "sb/organize-messy-files/planning-with-files",
+     "skillsmp/dont-be-greedy"
+    ],
+    "tokens": 62481,
+    "cost": 0.002624,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|organize-messy-files|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 13
+   },
+   {
+    "ranked": [
+     "sb/organize-messy-files/file-organizer",
+     "sb/latex-formula-extraction/marker",
+     "skillsmp/embedding",
+     "skillsmp/pdf-to-markdown",
+     "skillsmp/analyzing-research-papers",
+     "sb/sales-pivot-analysis/pdf",
+     "sb/court-form-filling/pdf",
+     "skillsmp/pdf-28",
+     "sb/organize-messy-files/planning-with-files",
+     "skillsmp/building-classification-models-2"
+    ],
+    "tokens": 62736,
+    "cost": 0.002635,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|organize-messy-files|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 13
+   },
+   {
+    "ranked": [
+     "sb/organize-messy-files/file-organizer",
+     "sb/latex-formula-extraction/marker",
+     "skillsmp/analyzing-research-papers",
+     "sb/sales-pivot-analysis/pdf",
+     "skillsmp/pdf-to-markdown",
+     "sb/court-form-filling/pdf",
+     "sb/organize-messy-files/planning-with-files",
+     "skillsmp/dont-be-greedy",
+     "skillsmp/pdf-28",
+     "skillsmp/semantic-search-2"
+    ],
+    "tokens": 63341,
+    "cost": 0.00266,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|organize-messy-files|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 13
+   }
+  ],
+  "parallel-tfidf-search": [
+   {
+    "ranked": [
+     "sb/parallel-tfidf-search/python-parallelization",
+     "skillsmp/python-performance-1",
+     "sb/mars-clouds-clustering/parallel-processing",
+     "skillsmp/code",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "skillsmp/meta-cognition-parallel",
+     "sb/setup-fuzzing-py/discover-important-function",
+     "skillsmp/debug-1",
+     "skillsmp/ln-628-concurrency-auditor",
+     "skillsmp/performance-testing-3"
+    ],
+    "tokens": 63024,
+    "cost": 0.002647,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|parallel-tfidf-search|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/parallel-tfidf-search/python-parallelization",
+     "sb/mars-clouds-clustering/parallel-processing",
+     "skillsmp/python-performance-1",
+     "skillsmp/performance-optimization-14",
+     "sb/flink-query/senior-data-engineer",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/fix-build-agentops/testing-python",
+     "skillsmp/multiplicity-orchestration",
+     "skillsmp/performance-scalability-engineer",
+     "skillsmp/impl"
+    ],
+    "tokens": 63929,
+    "cost": 0.002685,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|parallel-tfidf-search|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 2
+   },
+   {
+    "ranked": [
+     "sb/parallel-tfidf-search/python-parallelization",
+     "sb/mars-clouds-clustering/parallel-processing",
+     "skillsmp/python-performance-1",
+     "skillsmp/impl",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/parallel-tfidf-search/memory-optimization",
+     "skillsmp/multiplicity-orchestration",
+     "skillsmp/optimization-resources",
+     "skillsmp/ln-628-concurrency-auditor",
+     "skillsmp/code"
+    ],
+    "tokens": 63304,
+    "cost": 0.002659,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|parallel-tfidf-search|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   }
+  ],
+  "python-scala-translation": [
+   {
+    "ranked": [
+     "sb/python-scala-translation/python-scala-idioms",
+     "sb/python-scala-translation/python-scala-oop",
+     "sb/python-scala-translation/python-scala-functional",
+     "skillsmp/code-migration",
+     "sb/python-scala-translation/python-scala-syntax-mapping",
+     "sb/python-scala-translation/python-scala-libraries",
+     "sb/python-scala-translation/python-scala-collections",
+     "skillsmp/code-reviewer-12",
+     "skillsmp/umbraco-auth-provider",
+     "skillsmp/prd-v06-environment-setup"
+    ],
+    "tokens": 63421,
+    "cost": 0.002664,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|python-scala-translation|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 4
+   },
+   {
+    "ranked": [
+     "sb/python-scala-translation/python-scala-idioms",
+     "sb/python-scala-translation/python-scala-oop",
+     "skillsmp/migrate",
+     "skillsmp/code-migration",
+     "sb/python-scala-translation/python-scala-libraries",
+     "sb/python-scala-translation/python-scala-functional",
+     "sb/python-scala-translation/python-scala-syntax-mapping",
+     "sb/python-scala-translation/python-scala-collections",
+     "skillsmp/impl",
+     "skillsmp/core-development"
+    ],
+    "tokens": 63788,
+    "cost": 0.002679,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|python-scala-translation|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 3
+   },
+   {
+    "ranked": [
+     "sb/python-scala-translation/python-scala-idioms",
+     "sb/python-scala-translation/python-scala-oop",
+     "skillsmp/migrate",
+     "skillsmp/codebase-access",
+     "sb/python-scala-translation/python-scala-functional",
+     "skillsmp/code-migration",
+     "sb/python-scala-translation/python-scala-collections",
+     "sb/python-scala-translation/python-scala-syntax-mapping",
+     "sb/flink-query/senior-data-engineer",
+     "sb/python-scala-translation/python-scala-libraries"
+    ],
+    "tokens": 63852,
+    "cost": 0.002682,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|python-scala-translation|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 4
+   }
+  ],
+  "quantum-numerical-simulation": [
+   {
+    "ranked": [
+     "sb/quantum-numerical-simulation/qutip",
+     "skillsmp/use-research",
+     "skillsmp/pennylane-2",
+     "skillsmp/analyzing-research-papers",
+     "skillsmp/code",
+     "sb/jax-computing-basics/jax-skills",
+     "sb/adaptive-cruise-control/csv-processing",
+     "skillsmp/uv-inline-script",
+     "skillsmp/codex-collaborator",
+     "skillsmp/impl"
+    ],
+    "tokens": 64993,
+    "cost": 0.00273,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|quantum-numerical-simulation|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 1
+   },
+   {
+    "ranked": [
+     "sb/quantum-numerical-simulation/qutip",
+     "skillsmp/use-research",
+     "sb/crystallographic-wyckoff-position-analysis/sympy",
+     "sb/jax-computing-basics/jax-skills",
+     "skillsmp/analyzing-research-papers",
+     "skillsmp/pennylane-2",
+     "skillsmp/context7-7",
+     "skillsmp/perplexity-researcher-pro",
+     "sb/adaptive-cruise-control/csv-processing",
+     "skillsmp/uv-inline-script"
+    ],
+    "tokens": 64784,
+    "cost": 0.002721,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|quantum-numerical-simulation|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 1
+   },
+   {
+    "ranked": [
+     "sb/quantum-numerical-simulation/qutip",
+     "skillsmp/pennylane-2",
+     "skillsmp/code",
+     "sb/jax-computing-basics/jax-skills",
+     "skillsmp/impl",
+     "skillsmp/analyzing-research-papers",
+     "sb/powerlifting-coef-calc/senior-data-scientist",
+     "sb/adaptive-cruise-control/csv-processing",
+     "skillsmp/github-prior-art-research",
+     "sb/crystallographic-wyckoff-position-analysis/sympy"
+    ],
+    "tokens": 64850,
+    "cost": 0.002724,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|quantum-numerical-simulation|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 1
+   }
+  ],
+  "react-performance-debugging": [
+   {
+    "ranked": [
+     "sb/fix-visual-stability/react-best-practices",
+     "skillsmp/providing-performance-optimization-advice",
+     "skillsmp/performance-scalability-engineer",
+     "skillsmp/codebase-access",
+     "skillsmp/frontend-development-1",
+     "skillsmp/performance-benchmarker",
+     "skillsmp/frontend-developer-3",
+     "skillsmp/performance-optimization-14",
+     "skillsmp/debug-1",
+     "skillsmp/nextjs-16-async-apis"
+    ],
+    "tokens": 62321,
+    "cost": 0.002617,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|react-performance-debugging|1k|0",
+    "n_requests": 5,
+    "rerank_nonzero": 12
+   },
+   {
+    "ranked": [
+     "sb/fix-visual-stability/react-best-practices",
+     "skillsmp/providing-performance-optimization-advice",
+     "skillsmp/frontend-development-1",
+     "skillsmp/performance-scalability-engineer",
+     "skillsmp/frontend-developer-3",
+     "sb/fix-visual-stability/browser-testing",
+     "skillsmp/debug-1",
+     "skillsmp/performance-optimization-14",
+     "skillsmp/performance-benchmarker",
+     "skillsmp/nextjs-code-reviewer"
+    ],
+    "tokens": 63040,
+    "cost": 0.002648,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|react-performance-debugging|1k|1",
+    "n_requests": 5,
+    "rerank_nonzero": 12
+   },
+   {
+    "ranked": [
+     "skillsmp/providing-performance-optimization-advice",
+     "skillsmp/frontend-developer-3",
+     "skillsmp/performance-scalability-engineer",
+     "sb/fix-visual-stability/react-best-practices",
+     "skillsmp/debug-1",
+     "skillsmp/frontend-development-1",
+     "skillsmp/codebase-access",
+     "skillsmp/performance-benchmarker",
+     "skillsmp/performance-optimization-14",
+     "skillsmp/nextjs-code-reviewer"
+    ],
+    "tokens": 62355,
+    "cost": 0.002619,
+    "versions": [
+     "jev-1.14.0"
+    ],
+    "shuffle_seed": "jev|react-performance-debugging|1k|2",
+    "n_requests": 5,
+    "rerank_nonzero": 13
+   }
+  ]
+ }
+}

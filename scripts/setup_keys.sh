@@ -1,7 +1,10 @@
 #!/bin/bash
 # Prompt for API keys (hidden input), write .env (mode 600), and mirror it to the Modal secret `jev-keys`
-# so remote jobs see the same keys. Press Enter to keep an existing value. Re-run any time.
+# so remote jobs see the same keys. A teammate uses their own secret so they never overwrite ours:
+#   SECRET=jev-keys-daniel scripts/setup_keys.sh SAIL2_API_KEY FIREWORKS_API_KEY
+# Press Enter to keep an existing value. Re-run any time.
 set -euo pipefail
+SECRET=${SECRET:-jev-keys}
 cd "$(dirname "$0")/.."
 [ -t 0 ] || { echo "setup_keys.sh needs an interactive terminal (hidden prompt). Run it in Terminal, not via '!'." >&2; exit 1; }
 touch .env && chmod 600 .env
@@ -19,5 +22,5 @@ done
 # Fixed, non-secret defaults (provider docs, 2026-11-21)
 [ -n "$(get SAIL_BASE_URL)" ] || set_kv SAIL_BASE_URL https://api.sailresearch.com/v1
 
-uvx --quiet --from modal --with python-dotenv modal secret create jev-keys --from-dotenv .env --force >/dev/null
-echo "Wrote .env and Modal secret 'jev-keys'. Now run: scripts/check_keys.sh"
+uvx --quiet --from modal --with python-dotenv modal secret create "$SECRET" --from-dotenv .env --force >/dev/null
+echo "Wrote .env and Modal secret '$SECRET'. Now run: scripts/check_keys.sh"

@@ -225,7 +225,7 @@ def spent(rows: list[dict]) -> dict:
     return out
 
 
-@app.function(volumes={"/jobs": jobs_vol, "/vol": data_vol, "/lib1k": lib1k_vol}, secrets=[modal.Secret.from_name("jev-keys")],
+@app.function(volumes={"/jobs": jobs_vol, "/vol": data_vol, "/lib1k": lib1k_vol}, secrets=[modal.Secret.from_name("jev-keys"), modal.Secret.from_name("jev-keys-daniel")],
               timeout=24 * 3600, cpu=8, memory=16384, nonpreemptible=True)  # preemption cancels every in-flight trial
 def grid(specs: list[dict], cfg: dict, meta: dict, results: str, n_concurrent: int):
     sys.path.insert(0, "/root")
@@ -280,8 +280,12 @@ def build_specs(model, conditions, library, seed, task_names, runs):
                 continue
             for task in task_names:
                 for i in range(runs):
-                    specs.append({"model": model, "condition": cond, "size": size, "seed": seed, "task": task, "run_idx": i,
-                                  "run_id": run_id(model, cond, size, seed, task, i)})
+                    spec = {"model": model, "condition": cond, "size": size, "seed": seed, "task": task, "run_idx": i,
+                            "run_id": run_id(model, cond, size, seed, task, i)}
+                    if cond == "jev":  # cached draw i (selection/jev.py); its cost is charged to the run that uses it
+                        x = json.loads((ROOT / f"data/selections/jev_{size}.json").read_text())["draws"][task][i]
+                        spec["jev_meta"] = {"jev_cost_usd": x["cost"], "jev_versions": x["versions"], "jev_ranked": x["ranked"]}
+                    specs.append(spec)
     return specs
 
 
