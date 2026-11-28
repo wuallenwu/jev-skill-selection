@@ -9,11 +9,19 @@ Experiment IDs refer to `docs/experiments.md`.
 - [ ] Before and after each big run, check the bills: SAIL dashboard; `uv run modal billing report --for today --json` filtered to `jev-*`. The runner hard-stops at $450 per provider and $20 for Jev.
 
 ## Allen: Jev
-- [ ] Add the TypeSafe key: `scripts/setup_keys.sh TYPESAFE_API_KEY` in a real terminal.
-- [ ] **J0** Probe: one request; confirm the 255-option and 32k-token limits, the `usage` token counts and the version string.
-- [ ] **J1** `selection/jev.py`: 1K chunking plus a final round; at 35K, rank the embedding top-100 (`data/selections/embedding_35k.json`). 3 independent draws per (task, size). Log every request and response. Write `data/selections/jev_{1k,35k}.json` as `{"top": {task: [d0, d1, d2]}, ...}` with per-draw cost and version.
+- [x] TypeSafe key added.
+- [x] **J0** Probe (jev-1.14.0; usage.input_tokens; most options get probability exactly 0, so ties are broken by stage-1 order): one request; confirm the 255-option and 32k-token limits, the `usage` token counts and the version string.
+- [ ] **J1** `selection/jev.py` (pilot done: 10 tasks × 3 draws × both sizes, $0.10; full: `uv run python selection/jev.py run --size 1k --tasks all`, then `--size 35k`, ~$0.80): 1K chunking plus a final round; at 35K, rank the embedding top-100 (`data/selections/embedding_35k.json`). 3 independent draws per (task, size). Log every request and response. Write `data/selections/jev_{1k,35k}.json` as `{"top": {task: [d0, d1, d2]}, ...}` with per-draw cost and version.
 - [ ] **J2** Jev offline recall (+ spread across draws), merged into `results/offline_recall_tasks84.csv`.
 - [ ] **J3** Agent runs: `--conditions jev --library 1k,35k` once J1 exists (pilot on `--tasks pilot --runs 1` first).
+
+## Daniel: keys (do first, ~2 min)
+- [ ] Add your SAIL key and the Fireworks key to **your own** Modal secret, in a real terminal (hidden prompt):
+  `SECRET=jev-keys-daniel scripts/setup_keys.sh SAIL2_API_KEY FIREWORKS_API_KEY`
+  Use `SECRET=jev-keys-daniel`, never the default: the default replaces Allen's `jev-keys` secret, which wipes SAIL and TypeSafe.
+  The runner loads both secrets, so `--model gemma-4-31b-sail2` (your SAIL) and `--model glm-5.3-fw` (Fireworks) just work.
+- [ ] `scripts/check_keys.sh` (free) should print `SAIL2: key ok` and `Fireworks: key ok`.
+- An agent (e.g. Claude Code) can do all of this from the repo. Point it at this file and `docs/experiments.md`. The only manual step is typing the keys into the prompt.
 
 ## Friend: non-Jev experiments (after Allen approves the full grid)
 Launch: `uv run modal run --detach harness/run.py --model deepseek-v4-flash --conditions <...> --library <...> --tasks all --results <name>`.
