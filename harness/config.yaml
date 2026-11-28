@@ -21,4 +21,6 @@ runs: 3              # runs per task per condition
 jev_cap_usd: 20
 resource_policy: limit:request   # Harbor Modal <cpu>:<memory> policy. auto = reserve full (~$0.25/trial); limit = reserve ~0, burst to the task's limit (~$0.03/trial); request = reserve full memory
 modal_app: jev-harbor
+modal_usd_per_trial: 0.06   # sandbox cost estimate under limit:request; re-calibrate from the bill
+modal_cap_usd: 350         # stop new trials when (all trials ever logged) x modal_usd_per_trial reaches this
 task_set: data/task_set.txt   # oracle-valid tasks (docs/oracle_sweep.tsv)

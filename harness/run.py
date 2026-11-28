@@ -242,7 +242,7 @@ def grid(specs: list[dict], cfg: dict, meta: dict, results: str, n_concurrent: i
     todo = [s for s in specs if s["run_id"] not in done]
     print(f"{len(specs)} runs requested, {len(specs) - len(todo)} already done, {len(todo)} to run", flush=True)
     lock, stop = threading.Lock(), threading.Event()
-    caps = {p: v["cap_usd"] for p, v in cfg["providers"].items()} | {"jev": cfg["jev_cap_usd"]}
+    caps = {p: v["cap_usd"] for p, v in cfg["providers"].items()} | {"jev": cfg["jev_cap_usd"], "modal_est": cfg["modal_cap_usd"]}
 
     def work(spec):
         if stop.is_set():
@@ -253,7 +253,10 @@ def grid(specs: list[dict], cfg: dict, meta: dict, results: str, n_concurrent: i
                 f.write(json.dumps(row) + "\n")
             rows.append(row)
             # caps are global: count every results file on the volume, so concurrent runs (Allen's + Daniel's) share them
-            s = spent([r for f in (JOBS / "results").glob("*.jsonl") if f != out for r in read_rows(f)] + rows)
+            all_rows = [r for f in (JOBS / "results").glob("*.jsonl") if f != out for r in read_rows(f)] + rows
+            s = spent(all_rows)
+            # Modal has no spend API inside the container: estimate from the trial count (calibrated from `modal billing report`)
+            s["modal_est"] = round(len(all_rows) * cfg["modal_usd_per_trial"], 2)
             over = [p for p, v in s.items() if caps.get(p) and v >= caps[p]]
             if over and not stop.is_set():
                 print(f"SPEND CAP HIT {over}: {s}; stopping new trials", flush=True); stop.set()
