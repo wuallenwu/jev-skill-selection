@@ -5,3 +5,4 @@ __pycache__/
 data/raw/
 jobs/
 data/harbor_tasks/
+results/raw/

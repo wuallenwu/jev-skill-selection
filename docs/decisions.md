@@ -68,3 +68,15 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 - Recall@k = |top-k ∩ curated| / |curated|, so @3 can't reach 1 for tasks with more than 3 curated skills. **(proposed)** Also report recall@k / min(k, |curated|) in the analysis.
 - **(to do)** The offline recall currently averages over all 87 tasks. Restrict it to the 84 oracle-valid tasks (cheap: the embeddings are cached).
 - Cost: $7.33 on Modal (app `jev-offline-sweep`, including the throughput tests), under the $15 cap.
+
+## Runner (Phase 1, 2026-11-27)
+- One Harbor job per trial (one (task, condition, run)), driven from a generated job YAML. All of them run inside the detached Modal function `jev-runner.grid`, 32 at a time.
+- `run_id` = hash of (model, condition, library size, seed, task, run index). no-skills and oracle use size "-", so they are shared across library sizes.
+- Results go to the `jev-jobs` Volume at `results/<name>.jsonl`, append-only. Resume skips run_ids that already have a `status: ok` row. Errored runs are retried and get a new row, and analysis uses the last ok row per run_id.
+- Agent cost = tokens × `harness/config.yaml` prices, not LiteLLM's numbers. The spend caps ($450 per provider, $20 Jev) are checked after every trial, and when one is hit the runner stops starting new trials. Up to 31 in-flight trials can overshoot.
+- Skill copies are normalized before injection: uppercase `SKILL.md`, LF line endings, no BOM. If the frontmatter still doesn't parse, it is rewritten from the library index's name and description. terminus-2 otherwise **silently hides** skills with CRLF line endings, a lowercase `skill.md`, or broken frontmatter (found in the mock e2e: BM25 listed 2 of 3 skills).
+- Oracle runs inject the task's own curated dirs unchanged, skipping non-skill dirs like the seismic tasks' `licenses/`. All 232 curated SKILL.md files parse.
+- Full-list (1K): Harbor's per-trial skill upload breaks at 1K skills (a single exec over ARG_MAX), so the normalized 1K library is pre-built on the Volume `jev-lib1k` and mounted at `/app/skills`. The mount is read-write and shared (a shortcut): its tree hash is checked after every grid, and any change fails the grid. Tasks use `skills_dir = "/app/skills/"` with a trailing slash, because Modal mounts volumes as symlinks and `find` won't descend into a symlink.
+- Full-list cost warning: the listing is ~144K prompt tokens per turn and takes ~2 min of sandbox time before the first turn. On DeepSeek without caching that is roughly $0.30–0.40 per run, so ~$100 for 252 runs. Measure in the pilot before committing.
+- skills_opened = SKILL.md paths read in terminus-2 commands (`cat`/`head`/... on `/app/skills/<dir>/SKILL.md`). Running a skill's scripts is logged separately as skills_used. Recall for full-list uses skills_opened.
+- Pilot task list: `data/pilot.txt`.

@@ -1,0 +1,10 @@
+citation-check
+gravitational-wave-detection
+jpg-ocr-stat
+manufacturing-equipment-maintenance
+multilingual-video-dubbing
+organize-messy-files
+parallel-tfidf-search
+python-scala-translation
+quantum-numerical-simulation
+react-performance-debugging

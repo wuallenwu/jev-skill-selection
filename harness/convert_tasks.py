@@ -38,7 +38,8 @@ def convert(src: Path, out: Path) -> None:
         "metadata": fm.get("metadata", {}),
         "verifier": {k: ver[k] for k in ("timeout_sec", "env") if k in ver},
         "agent": {k: ag[k] for k in ("timeout_sec",) if k in ag},
-        "environment": env | {"skills_dir": SKILLS_DIR},
+        # trailing slash: Modal mounts volumes as symlinks and terminus-2's `find <skills_dir>` won't descend a symlink
+        "environment": env | {"skills_dir": SKILLS_DIR + "/"},
         "solution": {"env": orc.get("env", {})},
     }
     if out.exists():

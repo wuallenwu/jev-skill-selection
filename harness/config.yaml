@@ -1,0 +1,19 @@
+# Prices are $/M tokens from provider docs (2026-11-21); re-check with scripts/check_keys.sh before big runs.
+providers:
+  sail:      {base_url: https://api.sailresearch.com/v1, key_env: SAIL_API_KEY, cap_usd: 450}
+  fireworks: {base_url: https://api.fireworks.ai/inference/v1, key_env: FIREWORKS_API_KEY, cap_usd: 450}
+  baseten:   {base_url: https://inference.baseten.co/v1, key_env: BASETEN_API_KEY, cap_usd: 450}
+  mock:      {base_url: http://127.0.0.1:8765/v1, key_env: MOCK_API_KEY, cap_usd: 0}  # harness/mock_llm.py, for tests
+
+models:
+  deepseek-v4-flash: {provider: sail, id: deepseek-ai/DeepSeek-V4-Flash-0731, usd_in: 0.09, usd_out: 0.18}
+  qwen3.6-35b-a3b:   {provider: sail, id: Qwen/Qwen3.6-35B-A3B, usd_in: 0.05, usd_out: 0.40}  # only Flex price listed
+  gemma-4-31b:       {provider: sail, id: google/gemma-4-31B-it, usd_in: 0.40, usd_out: 0.60}
+  glm-5.3:           {provider: sail, id: zai-org/GLM-5.3, usd_in: 0.98, usd_out: 3.08}
+  mock:              {provider: mock, id: mock, usd_in: 0.0, usd_out: 0.0}
+
+agent: terminus-2
+k: 3                 # skills per selector pick
+runs: 3              # runs per task per condition
+jev_cap_usd: 20
+task_set: data/task_set.txt   # oracle-valid tasks (docs/oracle_sweep.tsv)
