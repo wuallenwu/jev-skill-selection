@@ -174,15 +174,25 @@ def one_trial(spec: dict, cfg: dict, meta: dict) -> dict:
             "agent_sec": _dur(r.get("agent_execution")), "trial_started_at": r.get("started_at"), "trial_finished_at": r.get("finished_at"),
             "harbor_trial_dir": str(res.parent.relative_to(JOBS)),
         })
-        if exc and reward is None:
-            row["status"] = "error"
-        else:
-            row["status"] = "ok"
+        # Only agent-behaviour exceptions count as a (failed) task outcome; provider/infra errors are retried.
+        row["status"] = status_of(exc, reward)
+        if exc and row["status"] == "ok":
+            row["passed"] = False
     except Exception as e:  # infra failure: record it; the run is retried on resume
         row.update({"status": "error", "error": f"{type(e).__name__}: {str(e)[:500]}", "passed": None})
     row["latency_sec"] = round(time.time() - t0, 1)
     row["logged_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     return row
+
+
+OUTCOME_EXCEPTIONS = {"AgentTimeoutError", "ContextWindowExceededError", "AgentSafetyRefusalError", "NonZeroAgentExitCodeError"}
+
+
+def status_of(exc: dict | None, reward) -> str:
+    """ok = a real task outcome (pass or fail); error = infra/provider failure, retried on resume."""
+    if exc:
+        return "ok" if exc.get("exception_type") in OUTCOME_EXCEPTIONS else "error"
+    return "ok" if reward is not None else "error"
 
 
 def _dur(phase):

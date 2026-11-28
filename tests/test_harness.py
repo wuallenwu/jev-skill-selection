@@ -87,3 +87,10 @@ def test_sanity_flags_unlisted_skills():
          "condition": "embedding", "task_id": TASK, "passed": True, "skills_selected": C.select("embedding", TASK, "1k", 0, 0),
          "skills_unlisted": ["skillsmp__x"]}
     assert any("not listed" in e for e in sanity.check([r]))
+
+
+def test_status_of():
+    assert run.status_of(None, 1.0) == "ok" and run.status_of(None, 0.0) == "ok"
+    assert run.status_of({"exception_type": "AgentTimeoutError"}, 0.0) == "ok"     # agent ran out of time: a real failure
+    assert run.status_of({"exception_type": "BadRequestError"}, 0.0) == "error"    # provider rejected the request: retry
+    assert run.status_of(None, None) == "error"
