@@ -1,9 +1,10 @@
 """Config-driven runner: (model, condition, library_size, seed) -> Harbor trials on Modal -> append-only results rows.
 
-Runs inside a detached Modal function, so it survives a laptop disconnect. Resumable: a run_id that already has a
+Runs as a spawned call on the deployed app, so it survives a laptop sleep (`modal run --detach` did not). Resumable: a run_id that already has a
 non-error row is skipped; errored runs are retried and get a new row (rows are never rewritten).
 
-launch:  uv run modal run --detach harness/run.py --model deepseek-v4-flash --conditions none,oracle \
+launch:  uv run modal deploy harness/run.py   # after any code/data change; then spawn so nothing local must stay alive:
+         uv run modal run harness/run.py --spawn --model deepseek-v4-flash --conditions none,oracle \
              --library 1k --tasks pilot --runs 3 --results pilot
 fetch:   uv run modal volume get --force jev-jobs results/<results>.jsonl results/
 """
@@ -302,7 +303,7 @@ def git_meta():
 
 @app.local_entrypoint()
 def main(model: str, conditions: str, library: str = "1k", seed: int = 0, tasks: str = "all", runs: int = 0,
-         results: str = "", n_concurrent: int = 32, dry_run: bool = False, resource_policy: str = "", modal_app: str = ""):
+         results: str = "", n_concurrent: int = 32, dry_run: bool = False, resource_policy: str = "", modal_app: str = "", spawn: bool = False):
     import yaml
     sys.path.insert(0, str(ROOT))
     cfg = yaml.safe_load((ROOT / "harness/config.yaml").read_text())
@@ -317,5 +318,9 @@ def main(model: str, conditions: str, library: str = "1k", seed: int = 0, tasks:
     if dry_run:
         for s in specs[:5]:
             print(s)
+        return
+    if spawn:  # runs in the deployed app (`modal deploy harness/run.py` first): nothing local has to stay alive
+        call = modal.Function.from_name("jev-runner", "grid").spawn(specs, cfg, git_meta(), results, n_concurrent)
+        print(f"spawned {call.object_id} on deployed jev-runner; safe to close the laptop")
         return
     print(grid.remote(specs, cfg, git_meta(), results, n_concurrent))
