@@ -21,7 +21,7 @@ Owner key: **A** = Allen, **T** = teammate, **C** = Claude session. Anyone can t
 ## Loose ends
 - [ ] **T** Audit ~30 random near-duplicate drops (the 0.8 similarity cutoff in `selection/offline_sweep.py`); report false positives/negatives.
 - [x] **C** Restrict offline recall to the 84 tasks; add recall@k/min(k, |curated|) → `results/offline_recall_tasks84.csv`.
-- [ ] **C** BM25 sanity check (name+description only; dups left in) to explain BM25 ≈ 2× SkillRouter's number.
+- [x] **C** BM25 check: full text R@10 0.64 vs name+desc 0.42 at 35K → indexing the skill body explains most of the gap to SkillRouter (see decisions).
 - [ ] **A** Get the SkillFlow paper PDF from OpenReview (blocked for bots) for the comparison table.
 
 ## Analysis + poster
