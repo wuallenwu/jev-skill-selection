@@ -8,7 +8,9 @@ touch .env && chmod 600 .env
 get() { grep -E "^$1=" .env | tail -1 | cut -d= -f2- || true; }
 set_kv() { grep -vE "^$1=" .env > .env.tmp || true; echo "$1=$2" >> .env.tmp; mv .env.tmp .env; chmod 600 .env; }
 
-for k in SAIL_API_KEY TYPESAFE_API_KEY HF_TOKEN FIREWORKS_API_KEY BASETEN_API_KEY; do
+# usage: scripts/setup_keys.sh [KEY_NAME ...]   (no args = all keys; e.g. scripts/setup_keys.sh SAIL_API_KEY)
+keys=("$@"); [ ${#keys[@]} -gt 0 ] || keys=(SAIL_API_KEY TYPESAFE_API_KEY HF_TOKEN FIREWORKS_API_KEY BASETEN_API_KEY)
+for k in "${keys[@]}"; do
   cur=$(get $k); hint=${cur:+" (set, ends …${cur: -4})"}
   read -rsp "$k$hint: " v; echo
   [ -n "$v" ] && set_kv $k "$v"
