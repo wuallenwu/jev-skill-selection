@@ -9,3 +9,11 @@ package = false
 
 [tool.uv.sources]
 harbor = { path = "external/harbor", editable = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

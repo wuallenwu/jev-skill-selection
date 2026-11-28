@@ -3,6 +3,7 @@
 # so remote jobs see the same keys. Press Enter to keep an existing value. Re-run any time.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+[ -t 0 ] || { echo "setup_keys.sh needs an interactive terminal (hidden prompt). Run it in Terminal, not via '!'." >&2; exit 1; }
 touch .env && chmod 600 .env
 
 get() { grep -E "^$1=" .env | tail -1 | cut -d= -f2- || true; }
