@@ -23,6 +23,8 @@ DOCKERFILE_PATCHES = {
                                'RUN pip install --no-cache-dir "setuptools<81" seisbench==0.10.2 &&')],
     # Modal's builder can't set file capabilities (dumpcap from wireshark-cli)
     "suricata-custom-exfil": [("RUN dnf -y install \\", "RUN dnf -y --setopt=tsflags=nocaps install \\")],
+    # no-network task: terminus-2 can't apt-install tmux at runtime, so bake it in
+    "bike-rebalance": [("    libgfortran5 \\\n", "    libgfortran5 \\\n    tmux \\\n")],
 }
 SKILL_COPY_RE = re.compile(r"^COPY skills .*\n", re.M)  # baked-in skills would leak into no-skills runs
 
