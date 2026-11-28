@@ -15,6 +15,7 @@ list() {  # $1=name $2=key $3=models URL $4..=IDs to look for
 
 list SAIL "${SAIL_API_KEY:-}" "${SAIL_BASE_URL:-https://api.sailresearch.com/v1}/models" \
   Qwen/Qwen3.6-35B-A3B deepseek-ai/DeepSeek-V4-Flash-0731 zai-org/GLM-5.3 google/gemma-4-31B-it
+list SAIL2 "${SAIL2_API_KEY:-}" "${SAIL_BASE_URL:-https://api.sailresearch.com/v1}/models" google/gemma-4-31B-it zai-org/GLM-5.3 deepseek-ai/DeepSeek-V4-Flash-0731
 list Fireworks "${FIREWORKS_API_KEY:-}" https://api.fireworks.ai/inference/v1/models \
   accounts/fireworks/models/glm-5p3 accounts/fireworks/models/kimi-k3 accounts/fireworks/models/qwen3-embedding-8b
 list Baseten "${BASETEN_API_KEY:-}" https://inference.baseten.co/v1/models \

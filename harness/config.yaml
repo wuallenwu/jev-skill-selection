@@ -2,6 +2,7 @@
 providers:
   sail:      {base_url: https://api.sailresearch.com/v1, key_env: SAIL_API_KEY, cap_usd: 450}
   fireworks: {base_url: https://api.fireworks.ai/inference/v1, key_env: FIREWORKS_API_KEY, cap_usd: 450}
+  sail2:     {base_url: https://api.sailresearch.com/v1, key_env: SAIL2_API_KEY, cap_usd: 450}  # Daniel's SAIL credits
   baseten:   {base_url: https://inference.baseten.co/v1, key_env: BASETEN_API_KEY, cap_usd: 450}
   mock:      {base_url: http://127.0.0.1:8765/v1, key_env: MOCK_API_KEY, cap_usd: 0}  # harness/mock_llm.py, for tests
 
@@ -10,10 +11,14 @@ models:
   qwen3.6-35b-a3b:   {provider: sail, id: Qwen/Qwen3.6-35B-A3B, usd_in: 0.05, usd_out: 0.40}  # UNUSABLE on SAIL: Flex-only, no synchronous requests (2026-11-27)
   gemma-4-31b:       {provider: sail, id: google/gemma-4-31B-it, usd_in: 0.40, usd_out: 0.60}
   glm-5.3:           {provider: sail, id: zai-org/GLM-5.3, usd_in: 0.98, usd_out: 3.08}
+  glm-5.3-fw:        {provider: fireworks, id: accounts/fireworks/models/glm-5p3, usd_in: 1.40, usd_out: 4.40}
+  gemma-4-31b-sail2: {provider: sail2, id: google/gemma-4-31B-it, usd_in: 0.40, usd_out: 0.60}
   mock:              {provider: mock, id: mock, usd_in: 0.0, usd_out: 0.0}
 
 agent: terminus-2
 k: 3                 # skills per selector pick
 runs: 3              # runs per task per condition
 jev_cap_usd: 20
+resource_policy: auto   # Harbor Modal cpu/memory policy: auto = reserve the task's full cpus/memory; limit = burst
+modal_app: jev-harbor
 task_set: data/task_set.txt   # oracle-valid tasks (docs/oracle_sweep.tsv)

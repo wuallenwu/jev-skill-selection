@@ -133,7 +133,7 @@ def one_trial(spec: dict, cfg: dict, meta: dict) -> dict:
         sdir = Path(f"/tmp/skills/{rid}")
         shutil.rmtree(sdir, ignore_errors=True)
         # Bound sandbox life so a dead orchestrator can't leave sandboxes billing for Harbor's 24 h default.
-        env_kwargs = {"app_name": "jev-harbor", "sandbox_idle_timeout_secs": 1800, "sandbox_timeout_secs": 4 * 3600}
+        env_kwargs = {"app_name": cfg.get("modal_app", "jev-harbor"), "sandbox_idle_timeout_secs": 1800, "sandbox_timeout_secs": 4 * 3600}
         agent = {"name": cfg["agent"], "model_name": f"openai/{model['id']}", "base_url": prov["base_url"], "model_api_key_name": prov["key_env"]}
         if cond == "full-list":
             # Harbor's per-trial upload can't take 1K skills (one exec with every path > ARG_MAX), so mount the
@@ -145,7 +145,10 @@ def one_trial(spec: dict, cfg: dict, meta: dict) -> dict:
             if dmap:
                 agent["skills"] = [str(sdir)]
         job = {"job_name": rid, "jobs_dir": str(JOBS / "trials"), "n_attempts": 1, "n_concurrent_trials": 1,
-               "environment": {"type": "modal", "kwargs": env_kwargs},
+               # "limit" reserves 0.125 cores/128 MB and bursts to the task's cpus/memory, so Modal bills ~actual usage
+               # instead of the full reservation while the agent waits on the LLM.
+               "environment": {"type": "modal", "kwargs": env_kwargs, "cpu_enforcement_policy": cfg["resource_policy"],
+                               "memory_enforcement_policy": cfg["resource_policy"]},
                "agents": [agent], "tasks": [{"path": f"/root/data/harbor_tasks/{task}"}]}
         jdir = JOBS / "trials" / rid
         shutil.rmtree(jdir, ignore_errors=True)  # a retried errored run starts clean; its old row stays in results
@@ -291,10 +294,12 @@ def git_meta():
 
 @app.local_entrypoint()
 def main(model: str, conditions: str, library: str = "1k", seed: int = 0, tasks: str = "all", runs: int = 0,
-         results: str = "", n_concurrent: int = 32, dry_run: bool = False):
+         results: str = "", n_concurrent: int = 32, dry_run: bool = False, resource_policy: str = "", modal_app: str = ""):
     import yaml
     sys.path.insert(0, str(ROOT))
     cfg = yaml.safe_load((ROOT / "harness/config.yaml").read_text())
+    cfg["resource_policy"] = resource_policy or cfg["resource_policy"]
+    cfg["modal_app"] = modal_app or cfg.get("modal_app", "jev-harbor")
     task_set = (ROOT / cfg["task_set"]).read_text().split()
     names = task_set if tasks == "all" else (ROOT / f"data/{tasks}.txt").read_text().split() if (ROOT / f"data/{tasks}.txt").exists() else tasks.split(",")
     assert set(names) <= set(task_set), f"not in the oracle-valid task set: {set(names) - set(task_set)}"
