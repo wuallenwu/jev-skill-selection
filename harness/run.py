@@ -106,7 +106,7 @@ def lib1k(action: str = "build") -> dict:
     ids = C.library("1k")
     lib_hash = hashlib.sha256("\n".join(ids).encode()).hexdigest()
     if man.exists() and json.loads(man.read_text()).get("library_hash") == lib_hash:
-        return json.loads(man.read_text()) | {"rebuilt": False}
+        return {k: v for k, v in json.loads(man.read_text()).items() if k != "dirmap"} | {"rebuilt": False}
     for p in LIB1K.iterdir():
         shutil.rmtree(p) if p.is_dir() else p.unlink()
     dmap = materialize("full-list", None, ids, LIB1K)
