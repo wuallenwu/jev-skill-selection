@@ -90,3 +90,9 @@ Each entry: decision — reason. Proposed ones are marked **(proposed)** until y
 - **Modal bills sandboxes at 3× the function rate**: $0.1419/core-h and $0.024/GiB-h (`modal billing rates`). My earlier "~$200 Modal for the grid" used function rates and was wrong.
 - The pilots cost **$33.57 in `jev-harbor` sandboxes** for about 190 trials, including ~30 cancelled by preemption and the sandboxes they orphaned: ~$0.17/trial measured. From task requests (avg 2.0 cores, 4.1 GiB) and ~17–20 min/trial, a clean trial is **~$0.11–0.13**.
 - Projected Modal sandbox cost of the full DeepSeek grid (4,284 runs): **~$460–550** (~$730 at the measured pilot rate). That is more than the SAIL agent cost (~$215). **The grid is on hold until Allen decides how to cover or cut it.**
+
+## Full DeepSeek grid (2026-11-28)
+- Ran as two spawned calls on the deployed `jev-runner` app (`--spawn`). `modal run --detach` grids died when the laptop slept at 22:22; they resumed with no lost rows.
+- Final: 2,520/2,520 (none/oracle/embedding/jev/bm25/skillret) + 1,764/1,764 (degraded-25/50/75, full-list) completed rows. Modal ≈ $206 since the grid started; SAIL ≈ $244.
+- **Full-list exclusion:** 9 of 252 full-list runs (drone-planning-control 3, fix-visual-stability 3, threejs-to-obj 2, jax-computing-basics 1) listed 0 of the 1,000 skills in the agent prompt. Cause not yet diagnosed (likely the 1,000-file listing step failing intermittently in those images). Excluded from full-list analysis (n = 243); every other condition has 0 runs with unlisted skills.
+- bike-rebalance (no-network) needed tmux baked into its image; its first 6 errored rows were retried on the fixed image.
